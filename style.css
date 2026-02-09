@@ -1279,28 +1279,30 @@ span {
     .landscape-video {
         aspect-ratio: 16/9;
     }
-}
 
-@media (max-width: 768px) {
     .sub-features-grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: 
+            "portrait photo1"
+            "portrait photo2";
+        grid-template-columns: 1fr 1fr;
         gap: 15px;
     }
 
     .sub-feature-card.portrait {
-        grid-column: span 2;
+        grid-area: portrait;
         flex: none;
         width: 100%;
-        aspect-ratio: 16/9; /* Change to landscape for mobile stack for better fit if needed, or keep potrait */
+        height: 100%;
+        aspect-ratio: auto;
     }
+
+    .sub-feature-card.photo-1 { grid-area: photo1; }
+    .sub-feature-card.photo-2 { grid-area: photo2; }
 }
 
 @media (max-width: 480px) {
     .sub-features-grid {
-        grid-template-columns: 1fr;
-    }
-    .sub-feature-card.portrait {
-        grid-column: span 1;
+        gap: 10px;
     }
 }
