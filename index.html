@@ -82,40 +82,52 @@
             </div>
 
             <div class="featured-project-container">
-                <div class="featured-media-grid">
-                    <!-- Featured Videos -->
-                    <div class="featured-video-item" data-aos="fade-right">
+                <div class="featured-main-layout">
+                    <!-- Impact Video (Large) -->
+                    <div class="featured-card large video-card" data-aos="fade-right">
                         <div class="video-wrapper">
                             <video loop muted playsinline poster="assets/images/project-new-1.jpg" preload="none">
                                 <source src="assets/videos/project-new-1.mp4" type="video/mp4">
                             </video>
-                            <div class="video-overlay">
-                                <div class="play-icon"><i class="fas fa-play"></i></div>
+                            <div class="glass-overlay">
+                                <span class="badge">Featured Shoot</span>
+                                <div class="play-indicator"><i class="fas fa-play"></i></div>
+                                <div class="item-meta">
+                                    <h3>Latest Collaboration</h3>
+                                    <p>CanbeHandsome.id x Djiamputh</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="featured-video-item" data-aos="fade-left" data-aos-delay="200">
-                        <div class="video-wrapper">
-                            <video loop muted playsinline poster="assets/images/project-new-2.jpg" preload="none">
-                                <source src="assets/videos/project-new-2.mp4" type="video/mp4">
-                            </video>
-                            <div class="video-overlay">
-                                <div class="play-icon"><i class="fas fa-play"></i></div>
+                    <!-- Grid for secondary content -->
+                    <div class="featured-sub-grid">
+                        <div class="featured-card small photo-card" data-aos="fade-down" data-aos-delay="100">
+                            <div class="img-wrapper">
+                                <img src="assets/images/project-new-1.jpg" alt="Photography Detail" loading="lazy">
+                                <div class="glass-overlay mini">
+                                    <span>Detail Photo</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Featured Photos -->
-                    <div class="featured-photo-item" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="gallery-item">
-                            <img src="assets/images/project-new-1.jpg" alt="CanbeHandsome.id x Djiamputh 1"
-                                loading="lazy">
+                        <div class="featured-card small video-card-sm" data-aos="fade-left" data-aos-delay="200">
+                            <div class="video-wrapper">
+                                <video loop muted playsinline poster="assets/images/project-new-2.jpg" preload="none">
+                                    <source src="assets/videos/project-new-2.mp4" type="video/mp4">
+                                </video>
+                                <div class="glass-overlay mini">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="featured-photo-item" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="gallery-item">
-                            <img src="assets/images/project-new-2.jpg" alt="CanbeHandsome.id x Djiamputh 2"
-                                loading="lazy">
+
+                        <div class="featured-card small photo-card" data-aos="fade-up" data-aos-delay="300">
+                            <div class="img-wrapper">
+                                <img src="assets/images/project-new-2.jpg" alt="Creative Look" loading="lazy">
+                                <div class="glass-overlay mini">
+                                    <span>Creative Look</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
