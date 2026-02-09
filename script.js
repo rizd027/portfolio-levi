@@ -162,7 +162,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 });
 
 // Image Load Effect (Lazy Fade-in)
-document.querySelectorAll('.gallery-item img').forEach(img => {
+document.querySelectorAll('.gallery-item img, .compact-card img').forEach(img => {
     if (img.complete) {
         img.classList.add('loaded');
     } else {
@@ -172,7 +172,13 @@ document.querySelectorAll('.gallery-item img').forEach(img => {
 
 // Gallery Filtering Logic
 const filterButtons = document.querySelectorAll('.filter-btn');
-const galleryItems = document.querySelectorAll('.gallery-item, .compact-card');
+// Only photo cards should be in the lightbox
+const galleryItems = document.querySelectorAll('.gallery-item, .compact-card:not(:has(video))');
+// Fallback for browsers that don't support :has() - we'll filter them manually if needed, 
+// but for now let's just use a more generic approach if :has is risky.
+// Actually, let's just select all and check in showImage or filter here.
+const allPotentialGalleryItems = document.querySelectorAll('.gallery-item, .compact-card');
+const galleryItemsList = Array.from(allPotentialGalleryItems).filter(item => item.querySelector('img'));
 
 filterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -254,7 +260,7 @@ let currentIndex = 0;
 let visibleItems = [];
 
 const updateVisibleItems = () => {
-    visibleItems = Array.from(galleryItems).filter(item => !item.classList.contains('hide'));
+    visibleItems = galleryItemsList.filter(item => !item.classList.contains('hide'));
 };
 
 const showImage = (index) => {
@@ -295,10 +301,11 @@ const handleSwipe = () => {
     if (touchEndX > touchStartX + swipeThreshold) showImage(currentIndex - 1); // Swipe Right -> Prev
 };
 
-galleryItems.forEach((item, index) => {
+galleryItemsList.forEach((item, index) => {
     item.addEventListener('click', () => {
         updateVisibleItems();
         currentIndex = visibleItems.indexOf(item);
+        if (currentIndex === -1) return; // Not a visible photo
         showImage(currentIndex);
         lightbox.classList.add('active');
         document.body.classList.add('no-scroll');
