@@ -39,7 +39,7 @@ if (window.matchMedia("(pointer: fine)").matches) {
     });
 
     // Hover Effects
-    const interactiveElements = document.querySelectorAll('a, button, .gallery-item, .video-wrapper, .video-item, .compact-card');
+    const interactiveElements = document.querySelectorAll('a, button, .gallery-item, .video-wrapper, .video-item, .large-feature-item, .sub-feature-card');
 
     interactiveElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
@@ -173,11 +173,9 @@ document.querySelectorAll('.gallery-item img, .compact-card img').forEach(img =>
 // Gallery Filtering Logic
 const filterButtons = document.querySelectorAll('.filter-btn');
 // Only photo cards should be in the lightbox
-const galleryItems = document.querySelectorAll('.gallery-item, .compact-card:not(:has(video))');
-// Fallback for browsers that don't support :has() - we'll filter them manually if needed, 
-// but for now let's just use a more generic approach if :has is risky.
-// Actually, let's just select all and check in showImage or filter here.
-const allPotentialGalleryItems = document.querySelectorAll('.gallery-item, .compact-card');
+const galleryItems = document.querySelectorAll('.gallery-item, .sub-feature-card:not(:has(video))');
+// Fallback logic
+const allPotentialGalleryItems = document.querySelectorAll('.gallery-item, .sub-feature-card, .large-feature-item');
 const galleryItemsList = Array.from(allPotentialGalleryItems).filter(item => item.querySelector('img'));
 
 filterButtons.forEach(btn => {
@@ -232,7 +230,8 @@ const setupRevealObserver = () => {
     const elementsToReveal = [
         ...document.querySelectorAll('.gallery-item'),
         ...document.querySelectorAll('.video-item'),
-        ...document.querySelectorAll('.compact-card'),
+        ...document.querySelectorAll('.large-feature-item'),
+        ...document.querySelectorAll('.sub-feature-card'),
         ...document.querySelectorAll('.about-text'),
         ...document.querySelectorAll('.about-image'),
         ...document.querySelectorAll('.social-card')
