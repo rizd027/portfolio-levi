@@ -39,7 +39,7 @@ if (window.matchMedia("(pointer: fine)").matches) {
     });
 
     // Hover Effects
-    const interactiveElements = document.querySelectorAll('a, button, .gallery-item, .video-wrapper, .video-item');
+    const interactiveElements = document.querySelectorAll('a, button, .gallery-item, .video-wrapper, .video-item, .compact-card');
 
     interactiveElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
@@ -172,7 +172,7 @@ document.querySelectorAll('.gallery-item img').forEach(img => {
 
 // Gallery Filtering Logic
 const filterButtons = document.querySelectorAll('.filter-btn');
-const galleryItems = document.querySelectorAll('.gallery-item');
+const galleryItems = document.querySelectorAll('.gallery-item, .compact-card');
 
 filterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -226,6 +226,7 @@ const setupRevealObserver = () => {
     const elementsToReveal = [
         ...document.querySelectorAll('.gallery-item'),
         ...document.querySelectorAll('.video-item'),
+        ...document.querySelectorAll('.compact-card'),
         ...document.querySelectorAll('.about-text'),
         ...document.querySelectorAll('.about-image'),
         ...document.querySelectorAll('.social-card')
@@ -328,10 +329,11 @@ nextBtn.addEventListener('click', (e) => {
 
 
 // Video Reel Hover-Play Logic
-const videoItems = document.querySelectorAll('.video-item');
+const videoItems = document.querySelectorAll('.video-item, .compact-card');
 
 videoItems.forEach(item => {
     const video = item.querySelector('video');
+    if (!video) return; // Skip if no video (like photos in compact-grid)
 
     item.addEventListener('mouseenter', () => {
         video.play().catch(error => {
