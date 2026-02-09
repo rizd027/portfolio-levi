@@ -1199,57 +1199,161 @@ span {
     opacity: 0;
     transform: scale(0.95);
 }
-/* New Project Work Section */
+/* New Project Work Section - Premium Refresh */
 .new-work-section {
-    padding: 150px 0;
-    background: linear-gradient(to bottom, var(--bg-dark), var(--bg-card));
+    padding: 15vh 0;
+    background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.05), transparent 40%),
+                radial-gradient(circle at bottom left, rgba(212, 175, 55, 0.05), transparent 40%),
+                var(--bg-dark);
 }
 
-.featured-project-container {
-    margin-top: 50px;
-}
-
-.featured-media-grid {
+.featured-main-layout {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1.2fr 0.8fr;
     gap: 30px;
+    margin-top: 60px;
 }
 
-.featured-video-item {
-    grid-column: span 1;
+.featured-sub-grid {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 20px;
 }
 
-.featured-photo-item {
-    grid-column: span 1;
-}
-
-@media (max-width: 768px) {
-    .featured-media-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-.featured-video-item .video-wrapper,
-.featured-photo-item .gallery-item {
-    border-radius: 20px;
+.featured-card {
+    position: relative;
+    border-radius: 25px;
     overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    background: var(--bg-card);
     border: 1px solid var(--glass-border);
     transition: var(--transition);
 }
 
-.featured-video-item .video-wrapper:hover,
-.featured-photo-item .gallery-item:hover {
+.featured-card.large {
+    min-height: 600px;
+}
+
+.featured-card:hover {
     border-color: var(--primary);
-    transform: translateY(-10px);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
-.featured-video-item video {
+.featured-card .video-wrapper,
+.featured-card .img-wrapper {
     width: 100%;
-    aspect-ratio: 9/16;
-    object-fit: cover;
+    height: 100%;
+    position: relative;
 }
 
-.featured-media-grid .featured-video-item:nth-child(2) video {
-    aspect-ratio: 16/9;
+.featured-card video,
+.featured-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.featured-card:hover video,
+.featured-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Glass Overlays */
+.glass-overlay {
+    position: absolute;
+    inset: 0;
+    padding: 40px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    opacity: 1; /* Always visible for impact */
+    transition: var(--transition);
+    pointer-events: none;
+}
+
+.glass-overlay.mini {
+    padding: 20px;
+    background: rgba(0,0,0,0.3);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+}
+
+.featured-card:hover .glass-overlay.mini {
+    opacity: 1;
+    backdrop-filter: blur(10px);
+}
+
+.glass-overlay .badge {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    background: var(--primary);
+    color: #000;
+    padding: 6px 15px;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.play-indicator {
+    width: 80px;
+    height: 80px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    backdrop-filter: blur(5px);
+    transition: var(--transition);
+}
+
+.featured-card:hover .play-indicator {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #000;
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.item-meta h3 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.item-meta p {
+    color: var(--primary);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+@media (max-width: 992px) {
+    .featured-main-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .featured-card.large {
+        min-height: 500px;
+    }
+    
+    .featured-sub-grid {
+        grid-template-rows: none;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .featured-sub-grid {
+        grid-template-columns: 1fr;
+    }
 }
