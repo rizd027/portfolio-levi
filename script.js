@@ -334,23 +334,7 @@ nextBtn.addEventListener('click', (e) => {
 });
 
 
-// Video Reel Hover-Play Logic (Only for Reel items, Compact cards autoplay continuously)
-const videoReelItems = document.querySelectorAll('.video-item');
-
-videoReelItems.forEach(item => {
-    const video = item.querySelector('video');
-    if (!video) return;
-
-    item.addEventListener('mouseenter', () => {
-        video.play().catch(error => {
-            console.log("Auto-play was prevented:", error);
-        });
-    });
-
-    item.addEventListener('mouseleave', () => {
-        video.pause();
-    });
-});
+// Video playback is now handled via autoplay attribute in HTML for all sections.
 
 // Keyboard Navigation for Lightbox
 document.addEventListener('keydown', (e) => {
