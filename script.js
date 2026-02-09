@@ -335,12 +335,12 @@ nextBtn.addEventListener('click', (e) => {
 });
 
 
-// Video Reel Hover-Play Logic
-const videoItems = document.querySelectorAll('.video-item, .compact-card');
+// Video Reel Hover-Play Logic (Only for Reel items, Compact cards autoplay continuously)
+const videoReelItems = document.querySelectorAll('.video-item');
 
-videoItems.forEach(item => {
+videoReelItems.forEach(item => {
     const video = item.querySelector('video');
-    if (!video) return; // Skip if no video (like photos in compact-grid)
+    if (!video) return;
 
     item.addEventListener('mouseenter', () => {
         video.play().catch(error => {
