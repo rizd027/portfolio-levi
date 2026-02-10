@@ -482,7 +482,7 @@ span {
 
 /* Gallery Section */
 .gallery-section {
-    padding: 0px 0;
+    padding: 50px 0;
 }
 
 .section-header {
@@ -1304,5 +1304,108 @@ span {
 @media (max-width: 480px) {
     .sub-features-grid {
         gap: 10px;
+    }
+}
+
+/* Comcard Section */
+.comcard-section {
+    padding: 100px 0;
+    background: var(--bg-dark);
+}
+
+.comcard-container {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    max-width: 1200px;
+    margin: 50px auto 0;
+}
+
+.comcard-group {
+    width: 100%;
+}
+
+.comcard-title {
+    font-size: 1.5rem;
+    font-family: 'Tenor Sans', sans-serif;
+    color: #fff;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.comcard-title span {
+    color: var(--primary);
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.comcard-grid {
+    display: flex;
+    gap: 20px;
+    height: 600px;
+}
+
+.comcard-item.main {
+    flex: 0 0 45%;
+    height: 100%;
+}
+
+.comcard-sub-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.comcard-item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    background: var(--bg-card);
+    transition: var(--transition);
+}
+
+.comcard-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.comcard-item:hover {
+    border-color: var(--primary);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
+}
+
+.comcard-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Response: Comcard Mobile */
+@media (max-width: 992px) {
+    .comcard-grid {
+        height: auto;
+        flex-direction: column;
+    }
+    
+    .comcard-item.main {
+        aspect-ratio: 3/4;
+        width: 100%;
+        flex: none;
+    }
+    
+    .comcard-sub-grid {
+        aspect-ratio: 1/1;
+    }
+}
+
+@media (max-width: 576px) {
+    .comcard-sub-grid {
+        grid-template-columns: repeat(2, 1fr);
+        aspect-ratio: auto;
     }
 }
