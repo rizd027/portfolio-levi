@@ -1436,37 +1436,42 @@ span {
 .comcard-actions {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    margin-top: 50px;
+    gap: 30px;
+    margin: 60px auto 20px;
     flex-wrap: wrap;
+    max-width: 1200px;
 }
 
 .download-btn {
-    background: transparent;
-    border: 1px solid var(--primary);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(212, 175, 55, 0.3);
     color: #fff;
-    padding: 12px 30px;
+    padding: 14px 35px;
     border-radius: 50px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-family: 'Tenor Sans', sans-serif;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    transition: var(--transition);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 15px;
+    text-decoration: none;
+    backdrop-filter: blur(10px);
 }
 
 .download-btn i {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--primary);
+    transition: var(--transition);
 }
 
 .download-btn:hover {
     background: var(--primary);
+    border-color: var(--primary);
     color: #000;
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
 }
 
 .download-btn:hover i {
