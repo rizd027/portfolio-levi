@@ -1430,9 +1430,60 @@ span {
     color: var(--primary);
 }
 
-@media (max-width: 768px) {
-    .quote-text {
-        font-size: 1rem;
+/* Comcard Actions */
+.comcard-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 50px;
+    padding-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-download {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 30px;
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Tenor Sans', sans-serif;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    transition: var(--transition);
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-download i {
+    color: var(--primary);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.btn-download:hover {
+    background: var(--primary);
+    color: #000;
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+    transform: translateY(-3px);
+}
+
+.btn-download:hover i {
+    color: #000;
+}
+
+@media (max-width: 480px) {
+    .comcard-actions {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0 20px;
+    }
+    
+    .btn-download {
+        justify-content: center;
     }
 }
 
