@@ -1550,59 +1550,72 @@ span {
             "b5 b5 title title"
             "contact contact b1 b2";
         grid-template-columns: repeat(4, 1fr);
-        grid-auto-rows: clamp(120px, 20vw, 160px);
-        gap: 8px;
+        grid-template-rows: repeat(3, 155px) 90px 140px;
+        gap: 6px;
         padding: 0 10px;
         max-width: 100%;
+        margin-top: 30px;
     }
 
     .comcard-item {
         width: 100%;
         height: 100%;
+        border: 1px solid rgba(212, 175, 55, 0.3); /* Subtle gold border like in mockup */
+        border-radius: 8px; /* Slightly tighter radius for mobile */
     }
 
     .vert-title {
         display: flex !important;
         padding: 10px;
+        border: 1px solid var(--primary); /* Keep stronger border for text blocks */
     }
 
     .vert-text {
         transform: none;
         text-align: center;
+        width: 100%;
     }
 
     .vert-text h3 {
-        font-size: 0.85rem;
-        letter-spacing: 2px;
+        font-family: 'Playfair Display', serif; /* Use display font for name */
+        font-size: min(0.6rem, 4vw); /* Responsive font size to prevent cutoff */
+        letter-spacing: 1.5px;
         color: var(--primary);
+        font-weight: 700;
+        margin-bottom: 2px;
+        white-space: nowrap; /* Keep name on one line */
     }
 
     .vert-text p {
-        font-size: 0.45rem;
-        margin-top: 2px;
+        font-size: min(0.3rem, 3vw);
+        letter-spacing: 1px;
         color: var(--text-muted);
+        text-transform: uppercase;
+        opacity: 0.9;
     }
 
     .quote-card {
-        padding: 15px 10px;
+        padding: 15px 12px;
+        border: 1px solid var(--primary);
     }
 
     .quote-text {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         line-height: 1.4;
     }
 
     .stats-card, .contact-card {
-        padding: 10px;
+        padding: 12px;
         height: 100%;
     }
 
     .quote-badge {
-        top: 8px;
-        left: 8px;
-        width: 16px;
-        height: 16px;
+        top: 6px;
+        left: 6px;
+        width: 14px;
+        height: 14px;
         font-size: 8px;
+        border-radius: 1px;
     }
 }
 
