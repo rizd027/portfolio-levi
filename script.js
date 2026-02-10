@@ -173,9 +173,9 @@ document.querySelectorAll('.gallery-item img, .compact-card img').forEach(img =>
 // Gallery Filtering Logic
 const filterButtons = document.querySelectorAll('.filter-btn');
 // Only photo cards should be in the lightbox
-const galleryItems = document.querySelectorAll('.gallery-item, .sub-feature-card:not(:has(video)), .comcard-item');
+const galleryItems = document.querySelectorAll('.gallery-item, .sub-feature-card:not(:has(video)), .comcard-item:not(.stats-card):not(.vert-title):not(.contact-card)');
 // Fallback logic
-const allPotentialGalleryItems = document.querySelectorAll('.gallery-item, .sub-feature-card, .large-feature-item, .comcard-item');
+const allPotentialGalleryItems = document.querySelectorAll('.gallery-item, .sub-feature-card, .large-feature-item, .comcard-item:not(.stats-card):not(.vert-title):not(.contact-card)');
 const galleryItemsList = Array.from(allPotentialGalleryItems).filter(item => item.querySelector('img'));
 
 filterButtons.forEach(btn => {
