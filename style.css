@@ -1459,35 +1459,64 @@ span {
     .comcard-unified-grid {
         grid-template-columns: repeat(3, 1fr);
         grid-template-areas: none;
-        grid-auto-rows: 300px;
-        display: flex;
-        flex-wrap: wrap;
+        grid-auto-rows: 250px;
     }
     
-    .comcard-item {
-        flex: 0 0 calc(33.333% - 15px);
-        height: 350px;
-    }
-
-    .vert-title { display: none; } /* Hide vertical title on mobile/tablet to save space */
+    .vert-title { display: none; }
 }
 
 @media (max-width: 768px) {
-    .comcard-item {
-        flex: 0 0 calc(50% - 10px);
-        height: 250px;
+    .comcard-unified-grid {
+        display: grid;
+        grid-template-areas: 
+            "a1 a2 a3 b1"
+            "a4 stats stats b1"
+            "b5 b5 b2 b3"
+            "b5 b5 title title"
+            "contact contact a5 b4";
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: 140px;
+        gap: 8px;
+        padding: 0 10px;
+        max-width: 100%;
     }
-    
+
+    .comcard-item {
+        width: 100%;
+        height: 100%;
+    }
+
+    .vert-title {
+        display: flex !important;
+        padding: 10px;
+    }
+
+    .vert-text {
+        transform: none;
+    }
+
+    .vert-text h3 {
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+    }
+
+    .vert-text p {
+        font-size: 0.45rem;
+        margin-top: 2px;
+    }
+
+    .quote-card {
+        padding: 10px;
+    }
+
+    .quote-text {
+        font-size: 0.75rem;
+        line-height: 1.4;
+    }
+
     .stats-card, .contact-card {
-        flex: 0 0 100%;
-        height: auto;
-        padding: 40px;
+        padding: 10px;
+        height: 100%;
     }
 }
 
-@media (max-width: 480px) {
-    .comcard-item {
-        flex: 0 0 100%;
-        height: 400px;
-    }
-}
