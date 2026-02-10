@@ -1432,9 +1432,61 @@ span {
     font-weight: 200;
 }
 
-.quote-text span {
+/* Comcard Actions & Buttons */
+.comcard-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+.download-btn {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-family: 'Tenor Sans', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.download-btn i {
+    font-size: 1.1rem;
     color: var(--primary);
 }
+
+.download-btn:hover {
+    background: var(--primary);
+    color: #000;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+}
+
+.download-btn:hover i {
+    color: #000;
+}
+
+@media (max-width: 768px) {
+    .comcard-actions {
+        margin-top: 30px;
+        gap: 12px;
+    }
+    
+    .download-btn {
+        padding: 10px 20px;
+        font-size: 0.75rem;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 
 @media (max-width: 768px) {
     .quote-text {
