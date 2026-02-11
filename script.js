@@ -276,6 +276,33 @@ filterButtons.forEach(btn => {
     });
 });
 
+// Optimized Video Playback Observer
+const setupVideoObserver = () => {
+    const videoOptions = {
+        threshold: 0.2 // Play when 20% visible
+    };
+
+    const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const video = entry.target;
+            if (entry.isIntersecting) {
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(() => {
+                        // Silent catch for autoplay blocks
+                    });
+                }
+            } else {
+                video.pause();
+            }
+        });
+    }, videoOptions);
+
+    document.querySelectorAll('.media-box video, .video-wrapper video').forEach(video => {
+        videoObserver.observe(video);
+    });
+};
+
 // Premium Reveal & Lazy Optimization Engine
 const setupRevealObserver = () => {
     const revealOptions = {
@@ -289,10 +316,10 @@ const setupRevealObserver = () => {
                 // Reveal element
                 entry.target.classList.add('revealed');
 
-                // If it's a video item, start preloading
+                // If it's a video item, start preloading metadata if not already
                 const video = entry.target.querySelector('video');
-                if (video && video.getAttribute('preload') === 'none') {
-                    video.setAttribute('preload', 'metadata');
+                if (video && video.getAttribute('preload') === 'metadata') {
+                    video.load(); // Trigger load
                 }
 
                 // Once revealed, we can stop observing this specific element
@@ -319,9 +346,16 @@ const setupRevealObserver = () => {
     });
 };
 
-// Initialize Reveal Engine
-document.addEventListener('DOMContentLoaded', setupRevealObserver);
-window.addEventListener('load', setupRevealObserver);
+// Initialize Optimizations
+document.addEventListener('DOMContentLoaded', () => {
+    setupRevealObserver();
+    setupVideoObserver();
+});
+
+window.addEventListener('load', () => {
+    // Refresh position data
+    cacheSectionPositions();
+});
 
 // Lightbox Functionality
 const lightbox = document.getElementById('lightbox');
