@@ -41,18 +41,32 @@ const initPreloader = () => {
 
     mediaElements.forEach(el => {
         if (el.tagName.toLowerCase() === 'img') {
-            if (el.complete) {
+            if (el.complete && el.naturalWidth > 0) {
                 updateProgress();
             } else {
-                el.addEventListener('load', updateProgress);
-                el.addEventListener('error', updateProgress); // Count errors too to avoid blocking
+                el.addEventListener('load', updateProgress, { once: true });
+                el.addEventListener('error', updateProgress, { once: true });
             }
         } else if (el.tagName.toLowerCase() === 'video') {
-            // Check if video can play through without buffering
-            if (el.readyState >= 4) {
+            // Force play attempt to check if video can actually start
+            const playCheck = () => {
+                if (el.currentTime > 0 && !el.paused && !el.ended && el.readyState >= 3) {
+                    updateProgress();
+                    el.removeEventListener('playing', playCheck);
+                }
+            };
+
+            if (el.currentTime > 0 && !el.paused) {
                 updateProgress();
             } else {
-                el.addEventListener('canplaythrough', updateProgress, { once: true });
+                el.addEventListener('playing', playCheck, { once: true });
+                el.addEventListener('canplaythrough', () => {
+                    el.play().catch(() => {
+                        // If autoplay blocked, we consider it "loaded" anyway
+                        // so as not to hang the preloader
+                        updateProgress();
+                    });
+                }, { once: true });
                 el.addEventListener('error', updateProgress, { once: true });
             }
         }
