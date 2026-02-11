@@ -1,3 +1,78 @@
+// Media Preloader Logic
+const initPreloader = () => {
+    const preloader = document.getElementById('preloader');
+    const progressBar = document.getElementById('preloader-progress');
+    const percentageText = document.getElementById('preloader-percentage');
+    const mediaElements = [...document.querySelectorAll('img, video')];
+
+    let loadedCount = 0;
+    const totalMedia = mediaElements.length;
+
+    if (totalMedia === 0) {
+        finishLoading();
+        return;
+    }
+
+    const updateProgress = () => {
+        loadedCount++;
+        const progress = Math.round((loadedCount / totalMedia) * 100);
+
+        if (progressBar) progressBar.style.width = `${progress}%`;
+        if (percentageText) percentageText.textContent = `${progress}%`;
+
+        if (loadedCount >= totalMedia) {
+            setTimeout(finishLoading, 500); // Slight delay for "completed" look
+        }
+    };
+
+    function finishLoading() {
+        if (preloader) {
+            preloader.classList.add('fade-out');
+            document.body.classList.remove('no-scroll');
+
+            // Re-init AOS and Lenis after loading
+            AOS.refresh();
+
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 1000);
+        }
+    }
+
+    mediaElements.forEach(el => {
+        if (el.tagName.toLowerCase() === 'img') {
+            if (el.complete) {
+                updateProgress();
+            } else {
+                el.addEventListener('load', updateProgress);
+                el.addEventListener('error', updateProgress); // Count errors too to avoid blocking
+            }
+        } else if (el.tagName.toLowerCase() === 'video') {
+            // Check if metadata is already loaded
+            if (el.readyState >= 2) {
+                updateProgress();
+            } else {
+                el.addEventListener('loadeddata', updateProgress);
+                el.addEventListener('error', updateProgress);
+            }
+        }
+    });
+
+    // Fallback: If it takes too long (e.g., 5 seconds), just show the site
+    setTimeout(() => {
+        if (preloader && !preloader.classList.contains('fade-out')) {
+            finishLoading();
+        }
+    }, 8000);
+};
+
+// Initialize Preloader as soon as possible
+document.addEventListener('DOMContentLoaded', () => {
+    // Add no-scroll initially
+    document.body.classList.add('no-scroll');
+    initPreloader();
+});
+
 // Initialize Lenis (Luxury Smooth Scroll)
 const lenis = new Lenis({
     duration: 1.2,
