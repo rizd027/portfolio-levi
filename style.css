@@ -806,7 +806,7 @@ span {
     grid-template-columns: repeat(12, 1fr);
     gap: 30px;
     margin-top: 50px;
-    contain: layout;
+    contain: layout paint;
 }
 
 .video-item {
@@ -818,6 +818,7 @@ span {
     will-change: transform;
     backface-visibility: hidden;
     transform: translateZ(0);
+    contain: paint;
 }
 
 .video-item.vertical {

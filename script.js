@@ -292,8 +292,6 @@ const setupVideoObserver = () => {
                         // Silent catch for autoplay blocks
                     });
                 }
-            } else {
-                video.pause();
             }
         });
     }, videoOptions);
