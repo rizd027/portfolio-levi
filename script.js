@@ -48,12 +48,12 @@ const initPreloader = () => {
                 el.addEventListener('error', updateProgress); // Count errors too to avoid blocking
             }
         } else if (el.tagName.toLowerCase() === 'video') {
-            // Check if metadata is already loaded
-            if (el.readyState >= 2) {
+            // Check if video can play through without buffering
+            if (el.readyState >= 4) {
                 updateProgress();
             } else {
-                el.addEventListener('loadeddata', updateProgress);
-                el.addEventListener('error', updateProgress);
+                el.addEventListener('canplaythrough', updateProgress, { once: true });
+                el.addEventListener('error', updateProgress, { once: true });
             }
         }
     });
