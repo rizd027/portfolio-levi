@@ -954,46 +954,72 @@ span {
     padding: 150px 0;
 }
 
-.social-links {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+.contact-minimal {
+    max-width: 800px;
+    margin: 40px auto 0;
 }
 
-.social-card {
-    background: var(--bg-card);
-    padding: 40px;
-    border-radius: 20px;
+.contact-row {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
     text-decoration: none;
-    color: var(--text-main);
-    text-align: center;
-    border: 1px solid var(--glass-border);
     transition: var(--transition);
 }
 
-.social-card i {
-    font-size: 3rem;
-    color: var(--primary);
-    margin-bottom: 20px;
+.contact-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
-.social-card span {
-    display: block;
-    font-weight: 700;
+.contact-icon i {
     font-size: 1.2rem;
-    margin-bottom: 5px;
+    color: var(--primary);
+    transition: var(--transition);
+}
+
+.contact-label {
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Hover Effects */
+.contact-item:hover .contact-icon {
+    background: var(--primary);
+    border-color: var(--primary);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+}
+
+.contact-item:hover .contact-icon i {
+    color: var(--bg-dark);
+}
+
+.contact-item:hover .contact-label {
     color: var(--text-main);
 }
 
-.social-card p {
-    color: var(--text-muted);
-}
-
-.social-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--primary);
-    background: rgba(212, 175, 55, 0.05);
-}
 
 /* Footer */
 .footer {
